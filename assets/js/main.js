@@ -71,3 +71,33 @@ window.addEventListener('DOMContentLoaded', () => {
         document.getElementById('bar-happiness').style.width = `${user.happiness}%`;
     }
 });
+
+// Al inicio de main.js
+let interactionTimer;
+
+window.petPusheen = () => {
+    const petImg = document.getElementById('pusheen-pet');
+    
+    // Cambiar al GIF de "feliz/acariciado"
+    petImg.src = 'assets/img/pusheen_2.gif';
+    
+    // Efecto visual de corazones (opcional)
+    spawnHearts();
+
+    // Volver al GIF normal después de 2 segundos
+    clearTimeout(interactionTimer);
+    interactionTimer = setTimeout(() => {
+        petImg.src = 'assets/img/pusheen_1.gif';
+    }, 2000);
+    
+    // Subir felicidad en la DB
+    updateStat('happiness', 1);
+};
+
+// Función para actualizar stats en Supabase
+async function updateStat(stat, amount) {
+    const user = JSON.parse(localStorage.getItem('pusheen_user'));
+    const newValue = Math.min(100, user[stat] + amount);
+    
+    await supabase.from('players').update({ [stat]: newValue }).eq('username', user.username);
+}

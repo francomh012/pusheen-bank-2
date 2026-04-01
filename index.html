@@ -6,6 +6,7 @@
     <title>Pusheen Bank 🐾</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
@@ -55,11 +56,22 @@
             <img src="assets/img/pusheen.gif" id="pusheen-pet" class="pusheen-main" alt="Mascota">
         </div>
 
-        <nav class="bottom-nav">
-            <button onclick="alert('¡Próximamente!')">🎮 Jugar</button>
-            <button onclick="alert('Abriendo camino...')">🐾 Camino</button>
-            <button onclick="alert('¡Yum!')">🍰 Comer</button>
-        </nav>
+<div id="bank-section" style="display: none; padding: 20px; text-align: center;">
+    <h2 style="color: var(--soft-pink);">🏦 Bóveda de Pusheen</h2>
+    <img src="assets/img/pusheen_bank.gif" width="150">
+    <div class="bank-card">
+        <p>Ahorros compartidos:</p>
+        <h1 id="total-bank-coins">0</h1>
+    </div>
+    <button onclick="closeBank()" class="btn-sec">Volver</button>
+</div>
+
+<nav class="bottom-nav">
+    <button onclick="showGame()">🎮 Jugar</button>
+    <button onclick="showJourney()">🐾 Camino</button>
+    <button onclick="openBank()">🏦 Banco</button>
+    <button onclick="feedPusheen()">🍰 Comer</button>
+</nav>
     </div>
 
     <script type="module" src="assets/js/main.js"></script>
