@@ -12,6 +12,7 @@
     <div id="login-screen" class="login-screen">
         <div class="login-card">
             <h1 id="login-title">¿Quién eres hoy? 🐾</h1>
+            
             <div id="profile-selection" class="profile-grid">
                 <div class="profile-item" onclick="selectProfile('Franco')">
                     <img src="assets/img/corona1.png" class="profile-img">
@@ -22,12 +23,19 @@
                     <p>Jess</p>
                 </div>
             </div>
+
             <div id="password-area" style="display: none;">
                 <input type="password" id="pass-input" placeholder="Contraseña">
                 <div style="display: flex; gap: 10px; justify-content: center;">
                     <button onclick="backToProfiles()" class="btn-sec">Atrás</button>
                     <button onclick="attemptLogin()" class="btn-main">Entrar 🔓</button>
                 </div>
+            </div>
+
+            <div id="create-password-area" style="display: none;">
+                <p>¡Es tu primera vez! 🐾</p>
+                <input type="password" id="new-pass-input" placeholder="Nueva contraseña">
+                <button onclick="saveNewPassword()" class="btn-main">Guardar y Entrar ✨</button>
             </div>
         </div>
     </div>
@@ -41,10 +49,9 @@
 
         <div class="pet-container">
             <div class="stats-grid">
-                <div class="stat-item">😋 <div class="stat-bar"><div id="bar-hunger" class="stat-fill" style="width: 85%;"></div></div></div>
-                <div class="stat-item">💖 <div class="stat-bar"><div id="bar-happiness" class="stat-fill" style="width: 95%;"></div></div></div>
+                <div class="stat-item">😋 <div class="stat-bar"><div id="bar-hunger" class="stat-fill"></div></div></div>
+                <div class="stat-item">💖 <div class="stat-bar"><div id="bar-happiness" class="stat-fill"></div></div></div>
             </div>
-            
             <img src="assets/img/pusheen.gif" id="pusheen-pet" class="pusheen-main" alt="Mascota">
         </div>
 
