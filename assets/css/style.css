@@ -70,3 +70,37 @@ input {
   background: var(--soft-pink);
   transition: width 0.5s;
 }
+.btn-main {
+    background: var(--soft-pink);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    color: #2d1b24;
+    font-weight: 900;
+    cursor: pointer;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 15px rgba(255, 175, 204, 0.4);
+}
+
+.btn-main:active { transform: scale(0.95); }
+
+.bottom-nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    background: rgba(0,0,0,0.5);
+    padding: 15px;
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+}
+
+.bottom-nav button {
+    background: none;
+    border: 1px solid var(--soft-pink);
+    color: var(--soft-pink);
+    border-radius: 15px;
+    padding: 8px 15px;
+}
