@@ -104,3 +104,35 @@ input {
     border-radius: 15px;
     padding: 8px 15px;
 }
+.profile-grid {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.profile-item {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.profile-item:hover { transform: scale(1.1); }
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--soft-pink);
+    box-shadow: var(--text-glow);
+    background: #444;
+    object-fit: cover;
+}
+
+.btn-sec {
+    background: transparent;
+    border: 1px solid var(--soft-pink);
+    color: var(--soft-pink);
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}

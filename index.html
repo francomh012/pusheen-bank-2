@@ -9,37 +9,31 @@
 </head>
 <body>
 
-    <div id="login-screen" class="login-screen">
-        <div class="login-card">
-            <img src="assets/img/pusheen.gif" alt="Pusheen" width="100">
-            <h1 style="font-size: 1.5rem; margin-bottom: 10px;">Pusheen Bank</h1>
-            <input type="text" id="user-input" placeholder="Usuario (Franco/Jess)">
-            <input type="password" id="pass-input" placeholder="Contraseña">
-            <button id="btn-login" class="btn-main">Entrar 🐾</button>
-        </div>
-    </div>
-
-    <div id="game-screen" style="display: none;">
-        <header class="game-header">
-            <div class="coin-display">🪙 <span id="user-coins">0</span></div>
-            <div class="user-badge" id="user-name-display">Franco</div>
-        </header>
-
-        <div class="pet-container">
-            <div class="stats-grid">
-                <div class="stat-item">😋 <div class="stat-bar"><div id="bar-hunger" class="stat-fill" style="width: 80%;"></div></div></div>
-                <div class="stat-item">💖 <div class="stat-bar"><div id="bar-happiness" class="stat-fill" style="width: 90%;"></div></div></div>
+<div id="login-screen" class="login-screen">
+    <div class="login-card">
+        <h1 id="login-title">¿Quién eres hoy? 🐾</h1>
+        
+        <div id="profile-selection" class="profile-grid">
+            <div class="profile-item" onclick="selectProfile('Franco')">
+                <img src="assets/img/corona1.png" class="profile-img">
+                <p>Franco</p>
             </div>
-            
-            <img src="assets/img/pusheen.gif" id="pusheen-pet" class="pusheen-main" alt="Mascota">
+            <div class="profile-item" onclick="selectProfile('Jess')">
+                <img src="assets/img/corona2.png" class="profile-img">
+                <p>Jess</p>
+            </div>
         </div>
 
-        <nav class="bottom-nav">
-            <button onclick="playWithPusheen()">🎮 Jugar</button>
-            <button onclick="openJourney()">🐾 Camino</button>
-            <button onclick="feedPusheen()">🍰 Comer</button>
-        </nav>
+        <div id="password-area" style="display: none;">
+            <p id="selected-user-label"></p>
+            <input type="password" id="pass-input" placeholder="Contraseña">
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button onclick="backToProfiles()" class="btn-sec">Atrás</button>
+                <button onclick="attemptLogin()" class="btn-main">Entrar 🔓</button>
+            </div>
+        </div>
     </div>
+</div>
 
     <script type="module" src="assets/js/main.js"></script>
 </body>
