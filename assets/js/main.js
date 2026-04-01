@@ -47,3 +47,9 @@ window.addEventListener('DOMContentLoaded', () => {
         document.getElementById('user-coins').innerText = user.wallet_coins;
     }
 });
+
+// Función para cerrar sesión y volver a perfiles
+window.logout = () => {
+    localStorage.removeItem('pusheen_user');
+    window.location.reload();
+};
