@@ -1,7 +1,6 @@
 import { supabase } from './supabaseClient.js'
 
-// Importar bcryptjs desde CDN
-const bcrypt = await import('https://esm.sh/bcryptjs@2.4.3')
+// bcryptjs se importará cuando sea necesario (lazy loading)
 
 /**
  * Hashea una contraseña usando bcryptjs
@@ -12,6 +11,7 @@ export async function hashPassword(password) {
     if (password.length < 4) {
         throw new Error('La contraseña debe tener al menos 4 caracteres')
     }
+    const bcrypt = await import('https://esm.sh/bcryptjs@2.4.3')
     return await bcrypt.hash(password, 8)
 }
 
@@ -23,8 +23,8 @@ export async function hashPassword(password) {
  * @returns {Promise<boolean>}
  */
 export async function comparePassword(password, hash) {
-    // Primero intenta comparar como bcrypt
     try {
+        const bcrypt = await import('https://esm.sh/bcryptjs@2.4.3')
         return await bcrypt.compare(password, hash)
     } catch (err) {
         // Si falla, intenta comparación directa (para contraseñas viejas en plain text)
