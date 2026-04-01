@@ -10,41 +10,45 @@
 </head>
 <body>
 
+    <!-- PANTALLA DE LOGIN -->
     <div id="login-screen" class="login-screen">
         <div class="login-card">
             <h1 id="login-title">¿Quién eres hoy? 🐾</h1>
             
             <div id="profile-selection" class="profile-grid">
-                <div class="profile-item" onclick="selectProfile('Franco')">
-                    <img src="assets/img/corona1.png" class="profile-img">
+                <div class="profile-item" data-username="Franco">
+                    <img src="assets/img/corona1.png" class="profile-img" alt="Perfil Franco">
                     <p>Franco</p>
                 </div>
-                <div class="profile-item" onclick="selectProfile('Jess')">
-                    <img src="assets/img/corona2.png" class="profile-img">
+                <div class="profile-item" data-username="Jess">
+                    <img src="assets/img/corona2.png" class="profile-img" alt="Perfil Jess">
                     <p>Jess</p>
                 </div>
             </div>
 
+            <!-- Ingreso de contraseña (existente) -->
             <div id="password-area" style="display: none;">
-                <input type="password" id="pass-input" placeholder="Contraseña">
+                <input type="password" id="pass-input" placeholder="Contraseña" autocomplete="off">
                 <div style="display: flex; gap: 10px; justify-content: center;">
-                    <button onclick="backToProfiles()" class="btn-sec">Atrás</button>
-                    <button onclick="attemptLogin()" class="btn-main">Entrar 🔓</button>
+                    <button id="back-btn" class="btn-sec">Atrás</button>
+                    <button id="login-btn" class="btn-main">Entrar 🔓</button>
                 </div>
             </div>
 
+            <!-- Crear contraseña (nuevo usuario) -->
             <div id="create-password-area" style="display: none;">
                 <p>¡Es tu primera vez! 🐾</p>
-                <input type="password" id="new-pass-input" placeholder="Nueva contraseña">
-                <button onclick="saveNewPassword()" class="btn-main">Guardar y Entrar ✨</button>
+                <input type="password" id="new-pass-input" placeholder="Nueva contraseña" autocomplete="off">
+                <button id="register-btn" class="btn-main">Guardar y Entrar ✨</button>
             </div>
         </div>
     </div>
 
+    <!-- PANTALLA DE JUEGO -->
     <div id="game-screen" style="display: none;">
         <header class="game-header">
             <div class="coin-display">🪙 <span id="user-coins">0</span></div>
-            <button onclick="logout()" class="btn-logout">Salir 🚪</button>
+            <button id="logout-btn" class="btn-logout">Salir 🚪</button>
             <div class="user-badge" id="user-name-display">...</div>
         </header>
 
@@ -53,27 +57,46 @@
                 <div class="stat-item">😋 <div class="stat-bar"><div id="bar-hunger" class="stat-fill"></div></div></div>
                 <div class="stat-item">💖 <div class="stat-bar"><div id="bar-happiness" class="stat-fill"></div></div></div>
             </div>
-            <img src="assets/img/pusheen.gif" id="pusheen-pet" class="pusheen-main" alt="Mascota">
+            <img src="assets/img/pusheen.gif" id="pusheen-pet" class="pusheen-main" alt="Mascota Pusheen">
         </div>
 
-<div id="bank-section" style="display: none; padding: 20px; text-align: center;">
-    <h2 style="color: var(--soft-pink);">🏦 Bóveda de Pusheen</h2>
-    <img src="assets/img/pusheen_bank.gif" width="150">
-    <div class="bank-card">
-        <p>Ahorros compartidos:</p>
-        <h1 id="total-bank-coins">0</h1>
-    </div>
-    <button onclick="closeBank()" class="btn-sec">Volver</button>
-</div>
+        <!-- Sección Banco -->
+        <div id="bank-section" style="display: none; padding: 20px; text-align: center;">
+            <h2 style="color: var(--soft-pink);">🏦 Bóveda de Pusheen</h2>
+            <img src="assets/img/pusheen_bank.gif" width="150" alt="Pusheen banco">
+            <div class="bank-card">
+                <p>Ahorros compartidos:</p>
+                <h1 id="total-bank-coins">0</h1>
+            </div>
+            <button id="bank-back-btn" class="btn-sec">Volver</button>
+        </div>
 
-<nav class="bottom-nav">
-    <button onclick="showGame()">🎮 Jugar</button>
-    <button onclick="showJourney()">🐾 Camino</button>
-    <button onclick="openBank()">🏦 Banco</button>
-    <button onclick="feedPusheen()">🍰 Comer</button>
-</nav>
+        <!-- Navegación inferior -->
+        <nav class="bottom-nav">
+            <button id="play-btn">🎮 Jugar</button>
+            <button id="journey-btn">🐾 Camino</button>
+            <button id="bank-btn">🏦 Banco</button>
+            <button id="feed-btn">🍰 Comer</button>
+        </nav>
     </div>
 
-    <script type="module" src="assets/js/main.js"></script>
+    <!-- Scripts -->
+    <script type="module">
+        import { showLoginScreen, showGameScreen, setupLoginHandlers, setupGameHandlers } from './assets/js/ui.js'
+        import { gameState } from './assets/js/gameState.js'
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            setupLoginHandlers()
+            setupGameHandlers()
+
+            // Si hay sesión activa, mostrar juego
+            if (gameState.isAuthenticated()) {
+                showGameScreen()
+            } else {
+                showLoginScreen()
+            }
+        })
+    </script>
 </body>
 </html>
